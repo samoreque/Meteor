@@ -1,0 +1,11 @@
+<template name = 'layout'>
+	<div class = 'container'>
+	    <header class="navbar navbar-default" role="navigation">
+	      <div class="navbar-header"></div>
+	        <a class="navbar-brand" href="{{pathFor 'postsList'}}">Microscope</a>
+	    </header>
+	    <div id="main">
+	      {{> yield}}
+	    </div>
+	</div>
+</template>
