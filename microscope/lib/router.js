@@ -13,14 +13,18 @@ Router.route('/posts/:_id', {
 
 Router.route('/submit', {name: 'postSubmit'});
 
-var requiereLogin = function() {
+var requireLogin = function() {
 	if (! Meteor.user()) {
-		this.render('accessDenied');		
+		if (Meteor.loggingIn()){
+			this.render(this.loadingTemplate);
+		} else {
+			this.render('accessDenied');		
+		}
 	} else {
 		this.next();
 	}
 }
 
-Router.onBeforeAction(requiereLogin, {only: 'postPage'});
+Router.onBeforeAction(requireLogin, {only: 'postSubmit'});
 Router.onBeforeAction('dataNotFound', {only: 'postPage'});
 
