@@ -5,13 +5,21 @@ Posts = new Mongo.Collection('posts');
 		return !! userId;
 	}
 });*/
-Meteor.method({
+Meteor.methods({
 	postInsert: function(postAttributes) {
 		check(Meteor.userId(), String);
 		check(postAttributes, {
 			title: String,
 			url: String
 		});
+
+		var postWithSameLink = Posts.findOne({url: postAttributes.url});
+		if (postWithSameLink) {
+			return {
+				postExists: true,
+				_id: postWithSameLink._id
+			}
+		}
 
 		var user = Meteor.user();
 		var post = _.extend(postAttributes, {
@@ -23,7 +31,7 @@ Meteor.method({
 		var postId = Posts.insert(post);
 
 		return {
-			_id: postID;
+			_id: postId
 		};
 	}
 });
