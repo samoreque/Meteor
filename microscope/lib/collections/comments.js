@@ -21,7 +21,7 @@ Meteor.methods({
     });
 
     //update the post with then number of comments
-    Posts.update(comment.postId, {$inc: {comments: 1}});
+    Posts.update(comment.postId, {$inc: {commentsCount: 1}});
 
     // create the comment, save the id
     comment._id = Comments.insert(comment);
