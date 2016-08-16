@@ -20,9 +20,14 @@ Meteor.methods({
       submitted: new Date()
     });
 
-    //pudate the post with then number of comments
+    //update the post with then number of comments
     Posts.update(comment.postId, {$inc: {comments: 1}});
-    
-    return Comments.insert(comment);
+
+    // create the comment, save the id
+    comment._id = Comments.insert(comment);
+
+    // now create a notificatiom, informin the user that there's been a comment
+    createCommentNotification(comment);
+    return comment._id;
   }
 });
