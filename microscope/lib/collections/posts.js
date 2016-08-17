@@ -64,7 +64,7 @@ Meteor.methods({
 		check(this.userId, String);
 		check(postId, String);
 
-		var post = Posts.findOne(postId);
+		/*var post = Posts.findOne(postId);
 		if (!post) 
 			throw new Meteor.Error('invalid', 'Post not found');
 		
@@ -74,7 +74,16 @@ Meteor.methods({
 		Posts.update(post._id, {
 			$addToSet: {upvoters: this.userId},
 			$inc: {votes: 1}
+		});*/
+		var affected = Posts.update({
+			_id: postId,
+			upvoters: {$ne: this.userId}
+		}, {
+			$addToSet: {upvoters: this.userId},
+			$inc: {votes: 1}
 		});
+		if (!affected)
+			throw new Meteor.Error('invalid', "You weren't able to upvote that post");
 	}
 });
 
