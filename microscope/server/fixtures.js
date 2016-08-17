@@ -1,16 +1,4 @@
 if (Posts.find().count() === 0) {
-	/*Posts.insert({
-		title: 'Introducing Telescope',
-		url: 'http://sachagreif.com/introducing-telescope/'
-	});
-	Posts.insert({
-		title: 'Meteor',
-		url: 'http://meteor.com'
-	});
-	Posts.insert({
-		title: 'The Meteor Book',
-		url: 'http://themeteorbook.com'
-	});*/
 	//Fixture data
 	var now = new Date().getTime();
 
@@ -31,7 +19,9 @@ if (Posts.find().count() === 0) {
 		author: sacha.profile.name,
 		url: 'http://sachagreif.com/introducing-telescope/',
 		submitted: new Date(now - 7 * 3600 * 1000),
-		commentsCount:2
+		commentsCount: 2,
+		upvoters: [],
+		votes: 0
 	});
 
 	Comments.insert({
@@ -56,7 +46,9 @@ if (Posts.find().count() === 0) {
 		author: tom.profile.name,
 		url: 'http://meteor.com',
 		submitted: new Date(now - 10 * 3600 * 1000),
-		commentsCount: 0
+		commentsCount: 0,
+		upvoters: [],
+		votes: 0
 	});
 
 	Posts.insert({
@@ -65,7 +57,9 @@ if (Posts.find().count() === 0) {
 		author: tom.profile.name,
 		url: 'http://themeteorbook.com',
 		submitted: new Date(now - 12 * 3600 * 1000),
-		commentsCount: 0
+		commentsCount: 0,
+		upvoters: [],
+		votes: 0
 	});
 
 	for (var i = 0 ; i < 10; i++) {
@@ -75,7 +69,9 @@ if (Posts.find().count() === 0) {
 			author: tom.profile.name,
 			url: 'http://google.com/?q=test-' + i,
 			submitted: new Date(now - i * 3600 * 1000),
-			commentsCount: 0
+			commentsCount: 0,
+			upvoters: [],
+			votes: 0
 		});
 	}	
 }	
