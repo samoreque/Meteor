@@ -15,17 +15,23 @@ PostsListController = RouteController.extend({
 		return parseInt(this.params.postsLimit) || this.increment;
 	},
 	findOptions: function() {
-		return {sort: {submitted: -1}, limit: {this.postsLimit()}};
+		return {sort: {submitted: -1}, limit: this.postsLimit()};
 	},
 	waitOn: function() {
 		return Meteor.subscribe('posts', this.findOptions());
 	},
+	posts: function() {
+		return Posts.find({}, this.findOptions());
+	},
 	data: function() {
+		var hasMore = this.posts().count() === this.postsLimit();
+		var nextPath = this.route.path({postsLimit: this.postsLimit() + this.increment});
 		return {
-			posts: Posts.find({}, this.findOptions())
+			posts: this.posts(),
+			nextPath: hasMore ? nextPath : null
 		};
 	}
-})
+});
 
 
 Router.route('/posts/:_id', {
@@ -44,18 +50,7 @@ Router.route('/posts/:_id/edit', {
 Router.route('/submit', {name: 'postSubmit'});
 
 Router.route('/:postsLimit?', {
-	name: 'postsList',
-	waitOn: function() {
-		var limit = parseInt(this.params.postsLimit) || 5;
-		return Meteor.subscribe('posts', {sort:{submitted: -1}, limit: limit});
-	},
-
-	data: function() {
-		var limit = parseInt(this.params.postsLimit) || 5;
-		return {
-			posts: Posts.find({}, {sort:{submitted: -1}, limit: limit})
-		};
-	}
+	name: 'postsList'
 });
 
 var requireLogin = function() {
