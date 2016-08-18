@@ -22,7 +22,6 @@ less
 juliancwirko:postcss
 iron:router
 sacha:spin
-twbs:bootstrap
 stylus
 accounts-ui
 accounts-password
