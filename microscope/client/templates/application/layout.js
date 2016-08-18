@@ -1,16 +1,16 @@
 Template.layout.helpers({
-	pageTitle: function(){ return Session.get('pageTitle');}
+	pageTitle(){ return Session.get('pageTitle');}
 });
 
-Template.layout.onRendered(function() {
+Template.layout.onRendered(() => {
 	this.find('#main')._uihooks = {
-		insertElement: function(node, next) {
+		insertElement(node, next) {
 			$(node)
 				.hide()
 				.insertBefore(next)
 				.fadeIn();
 		},
-		removeElement: function(node) {
+		removeElement(node) {
 			$(node).fadeOut(function() {
 				$(this).remove();
 			});

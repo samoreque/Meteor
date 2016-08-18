@@ -1,30 +1,30 @@
-Template.postEdit.onCreated(function() {
+Template.postEdit.onCreated(() => {
 	Session.set('postEditErrors', {});
 });
 
 Template.postEdit.helpers({
-	errorMessage: function(field) {
+	errorMessage(field) {
 		return Session.get('postEditErrors')[field];
 	},
-	errorClass: function(field) {
+	errorClass(field) {
 		return !!Session.get('postEditErrors')[field] ? 'has-error' : '';
 	}
 });
 
 Template.postEdit.events({
-	'submit form': function(e) {
+	'submit form'(e) {
 		e.preventDefault();
-		var currentPostId = this._id;
-		var postProperties = {
+		let currentPostId = this._id;
+		let postProperties = {
 			url: $(e.target).find('[name=url]').val(),
 			title: $(e.target).find('[name=title]').val()
 		}
 
-		var errors = validatePost(post);
+		let errors = validatePost(postProperties);
 		if (errors.title || errors.url)
 			return Session.set('postEditErrors', errors);
 
-		Posts.update(currentPostId, {$set: postProperties}, function(error) {
+		Posts.update(currentPostId, {$set: postProperties}, (error) => {
 			if (error) {
 				//display the error to the user
 				throwError(error.reason);
@@ -34,7 +34,7 @@ Template.postEdit.events({
 		});
 	},
 
-	'click .delete': function(e) {
+	'click .delete'(e) {
 		e.preventDefault();
 
 		if (confirm('Delete this post?')) {

@@ -1,5 +1,5 @@
 Template.postSubmit.events({
-	'submit form': function(e) {
+	'submit form'(e) {
 		e.preventDefault();
 		var post= {
 			url: $(e.target).find('[name=url]').val(),
@@ -28,15 +28,15 @@ Template.postSubmit.events({
 	}	
 });
 
-Template.postSubmit.onCreated(function() {
+Template.postSubmit.onCreated(() => {
 	Session.set('postSubmitErrors', {});
 });
 
 Template.postSubmit.helpers({
-	errorMessage: function(field) {
+	errorMessage(field) {
 		return Session.get('postSubmitErrors')[field];
 	},
-	errorClass: function(field) {
+	errorClass(field) {
 		return !!Session.get('postSubmitErrors')[field] ? 'error' : '';
 	}
 });

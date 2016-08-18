@@ -1,15 +1,15 @@
 Comments = new Mongo.Collection('comments');
 
 Meteor.methods({
-  commentInsert: function(commentAttributes) {
+  commentInsert(commentAttributes) {
     check(this.userId, String);
     check(commentAttributes, {
       postId: String,
       body: String
     });
 
-    var user = Meteor.user();
-    var post = Posts.findOne(commentAttributes.postId);
+    let user = Meteor.user();
+    let post = Posts.findOne(commentAttributes.postId);
 
     if (!post)
       throw new Meteor.Error('invalid-comment', 'You must comment on a post');

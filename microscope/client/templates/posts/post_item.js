@@ -1,14 +1,14 @@
 Template.postItem.helpers({
-	ownPost: function() {
+	ownPost() {
 		return this.userId === Meteor.userId();
 	},
 
-	domain: function() {
-		var a = document.createElement('a');
+	domain() {
+		let a = document.createElement('a');
 		a.href = this.url;
 		return a.hostname;
 	},
-	upvotedClass: function() {
+	upvotedClass() {
 		var userId = Meteor.userId();
 		if (userId && !_.include(this.upvoters, userId)) {
 			return 'btn-primary upvotable';
@@ -19,7 +19,7 @@ Template.postItem.helpers({
 });
 
 Template.postItem.events({
-	'click .upvote': function(e) {
+	'click .upvote'(e) {
 		e.preventDefault();
 		Meteor.call('upvote', this._id);
 	}

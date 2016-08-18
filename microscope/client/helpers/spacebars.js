@@ -1,4 +1,4 @@
-Template.registerHelper('pluralize', function(n, thing) {
+Template.registerHelper('pluralize', (n, thing) => {
 	//fairly stupid pluralizer
 	if (n===1){
 		return '1 ' + thing;

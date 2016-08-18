@@ -1,33 +1,33 @@
-Template.commentSubmit.onCreated(function() {
+Template.commentSubmit.onCreated(() => {
   Session.set('commentSubmitErrors', {});
 });
 
 Template.commentSubmit.helpers({
-  errorMessage: function(field) {
+  errorMessage(field) {
     return Session.get('commentSubmitErrors')[field];
   },
-  errorClass: function (field) {
+  errorClass(field) {
     return !!Session.get('commentSubmitErrors')[field] ? 'has-error' : '';
   }
 });
 
 Template.commentSubmit.events({
-  'submit form': function(e, template) {
+  'submit form'(e, template) {
     e.preventDefault();
 
-    var $body = $(e.target).find('[name=body]');
-    var comment = {
+    let $body = $(e.target).find('[name=body]');
+    let comment = {
       body: $body.val(),
       postId: template.data._id
     };
 
-    var errors = {};
+    let errors = {};
     if (! comment.body) {
       errors.body = "Please write some content";
       return Session.set('commentSubmitErrors', errors);
     }
 
-    Meteor.call('commentInsert', comment, function(error, commentId) {
+    Meteor.call('commentInsert', comment, (error, commentId) => {
       if (error){
         throwError(error.reason);
       } else {

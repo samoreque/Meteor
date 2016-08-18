@@ -1,5 +1,4 @@
 Errors = new Mongo.Collection(null);
 
-throwError = function(message) {
+throwError = (message) => 
 	Errors.insert({message: message});
-};
