@@ -7,10 +7,10 @@
     <a class="item {{activeRouteClass 'bestPosts'}}" href="{{pathFor 'bestPosts'}}">Best</a>
     {{#if currentUser}}
       <a class="item {{activeRouteClass 'postSubmit'}}" href="{{pathFor 'postSubmit'}}">Submit Post</a>
-      <li class="dropdown">
+      <div class="ui dropdown item" tabindex="0">
           {{> notifications}}
-      </li>
-    {{/if}}
+      </div>
+    {{/if}}    
     <div class="item">
         {{> loginButtons}}
     </div>

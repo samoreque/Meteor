@@ -4,21 +4,25 @@
       <form class="ui form">
         <div class="field {{errorClass 'url'}}">
           <label class="control-label" for="url">URL</label>
-          <div class="ui left labeled icon input">
+          <div class="ui right labeled icon input">
             <input name="url" id="url" type="text" value="" placeholder="Your URL" class="form-control"/>
-            <i class="user icon"></i>            
+            <div class='ui corner label'>
+              <i class='home icon red'></i>
+            </div>           
           </div>
-          <span class='ui red text'>{{errorMessage 'url'}}</span>
+          <span class=''>{{errorMessage 'url'}}</span>
         </div>
         <div class="field {{errorClass 'title'}}">
           <label class="control-label" for="title">Title</label>
             <div class="ui left labeled icon input">
               <input name="title" id="title" type="text" value="" placeholder="Name your post" class="form-control"/>
-              <i class="lock icon"></i>              
+              <div class='ui corner label'>
+                <i class='content icon red'></i>
+              </div>           
             </div>
             <span>{{errorMessage 'title'}}</span>
         </div>
-        <input type="submit" value="Submit" class="ui red submit button"/>
+        <input type="submit" value="Submit" class="ui blue submit button"/>
       </form>
     </div>
   </div>

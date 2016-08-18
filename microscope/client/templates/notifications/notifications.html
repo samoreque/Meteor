@@ -1,26 +1,30 @@
 <template name="notifications">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+  <a href="#" class="" data-toggle="">
     Notifications
     {{#if notificationCount}}
-      <span class="badge badge-inverse">{{notificationCount}}</span>
+      <span style='color:#FF00FF' class="">{{notificationCount}}</span>
     {{/if}}
     <b class="caret"></b>
   </a>
-  <ul class="notification dropdown-menu">
+  <i class ="dropdown icon"></i>
+  <div class="menu transition hidden" tabindex="-1" >    
     {{#if notificationCount}}
       {{#each notifications}}
         {{> notificationItem}}
       {{/each}}
     {{else}}
-      <li><span>No Notifications</span></li>
-    {{/if}}
-  </ul>
+      <div class="item"><span>No Notifications</span></div>
+    {{/if}}   
+  </div>  
+  <script>
+    $('.ui.dropdown').dropdown();
+  </script>
 </template>
 
 <template name="notificationItem">
-  <li>
-    <a href="{{notificationPostPath}}">
+  <div class= "item">
+    <a style="color:blue" href="{{notificationPostPath}}">
       <strong>{{commenterName}}</strong> commented on your post
     </a>
-  </li>
+  </div>
 </template>

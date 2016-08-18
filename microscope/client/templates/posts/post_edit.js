@@ -7,7 +7,7 @@ Template.postEdit.helpers({
 		return Session.get('postEditErrors')[field];
 	},
 	errorClass(field) {
-		return !!Session.get('postEditErrors')[field] ? 'has-error' : '';
+		return !!Session.get('postEditErrors')[field] ? 'error' : '';
 	}
 });
 

@@ -7,7 +7,7 @@ Template.commentSubmit.helpers({
     return Session.get('commentSubmitErrors')[field];
   },
   errorClass(field) {
-    return !!Session.get('commentSubmitErrors')[field] ? 'has-error' : '';
+    return !!Session.get('commentSubmitErrors')[field] ? 'error' : '';
   }
 });
 
