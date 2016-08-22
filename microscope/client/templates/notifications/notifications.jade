@@ -1,0 +1,21 @@
+template(name="notifications")
+  a(href="#" data-toggle="") Notifications
+    +if notificationCount
+      span(style="color:#FF00FF") {{notificationCount}}
+    b.caret
+  i.dropdown.icon
+  .menu.transition.hidden(tabindex="-1")
+    +if notificationCount
+      +each notifications
+        +notificationItem
+    +else
+      .item
+        span No Notifications
+  script $('.ui.dropdown').dropdown();
+
+
+template(name="notificationItem")
+  .item
+    a(style="color:blue" href="{{notificationPostPath}}")
+      strong {{commenterName}}
+      |commented on your post

@@ -1,0 +1,9 @@
+template(name="errors")
+  .errors
+    +each errors
+      +error
+
+template(name="error")
+  .ui.red.mini.message(role="alert")
+    button.close(type="button" data-dismiss="alert") &times;
+    {{message}}

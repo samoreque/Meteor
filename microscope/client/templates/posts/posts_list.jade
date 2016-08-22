@@ -1,11 +1,11 @@
-template(name ="postsList")
-	div(class="posts page")
+template(name ="postsList1")
+	div.posts.page
 		.wrapper
-			each posts
+			+each posts
 				+postItem
-		if nextPath
+		+if nextPath
 			a.load-more(href="#{nextPath}") Load More
-		else
-			unless ready
+		+else
+			+unless ready
 				+spinner
 
