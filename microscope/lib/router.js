@@ -21,6 +21,7 @@ PostsListController = RouteController.extend({
 		this.postsSub = Meteor.subscribe('posts', this.findOptions());
 	},
 	posts() {
+		debugger
 		return Posts.find({}, this.findOptions());
 	},
 	data() {
